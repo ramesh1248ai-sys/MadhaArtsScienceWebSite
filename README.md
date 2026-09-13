@@ -1,0 +1,80 @@
+# Madha Arts & Science College — website redesign
+
+A static, responsive redesign of https://www.madhaarts.in/ with AI-enhanced photography.
+No build step: plain HTML, one stylesheet and one small script.
+
+## Preview
+
+Double-click `index.html`, or serve the folder:
+
+```
+python -m http.server 8000
+# open http://localhost:8000
+```
+
+## Pages
+
+| File | Contents | Replaces (old site) |
+|---|---|---|
+| `index.html` | Hero, key facts, about, programme finder, principal's message, admissions + enquiry form, campus life, Madha Group | Home |
+| `about.html` | The college, mission statement & values, Madha Group + sister institutions, management team, principal's full message | About Us menu (5 pages) |
+| `academics.html` | All 9 programmes with filters, UG/PG admission criteria, how to apply | Admissions, Courses |
+| `campus-life.html` | Photo gallery with lightbox, social outreach | Gallery (was empty) |
+| `contact.html` | Address, phone, emails, map, enquiry form | Contact Us |
+| `before-after.html` | Drag-slider comparison of every original vs. enhanced photo (review page, not linked from the site) | — |
+
+```
+assets/css/styles.css      design system + all components
+assets/js/main.js          mobile menu, programme filter, lightbox, enquiry form, scroll reveal
+assets/img/                enhanced photos used by the site
+assets/img/originals/      untouched photos downloaded from the current site
+tools/enhance_images.py    the image enhancement pipeline
+```
+
+Design: deep navy + warm gold drawn from the college emblem, Newsreader (headings) and Inter (body) from Google Fonts,
+responsive from 360px phones to wide desktops, keyboard accessible, respects reduced-motion settings.
+
+## Photo enhancement
+
+Every photo went through `tools/enhance_images.py`:
+
+1. **AI super-resolution with Real-ESRGAN.** `RealESRGAN_x4plus` was used on the smallest, most degraded images (campus front, group campus, emblem) and the faster `realesr-general-x4v3` on everything else. The AI output is blended with a plain resample so textures stay natural.
+2. **Photographic grade:** white balance and levels, CLAHE local contrast, vibrance, a gentle S-curve, a graduated filter on washed-out skies, and light output sharpening.
+3. **Authenticity safeguards:**
+   - No generative face restoration (GFPGAN/CodeFormer), because those tools change people's facial features.
+   - Two small building signs are masked, because the AI invented letters there.
+
+To re-run, download the weights into `tools/models/`:
+
+- https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth
+- https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth
+
+then `pip install torch spandrel opencv-python-headless pillow numpy` and `python tools/enhance_images.py`.
+It runs on CPU in about 10 minutes.
+
+## Content notes: please review with the college
+
+All names, facts, contact details, the mission statement, leadership bios and the principal's message are taken from the current site.
+Things that were **removed** because they were template placeholders on the old site:
+
+- Lorem-ipsum "Latest News" and "Upcoming Events" (e.g. "184 Main Collins Street").
+- Fake statistics ("511697 Total Enrollment", "2113 Staffs").
+- A testimonial for "Madha Dental College".
+- A dental-clinic stock photo and a stock boardroom photo.
+- The "Follow us" link, which pointed to the Madha **Dental** College Facebook page.
+
+Things **written new** that the college should confirm:
+
+- **Programme descriptions and durations.** These are short, generic summaries; durations follow the University of Madras norm of UG 3 years and PG 2 years.
+- **Values cards** on the About page, expanded from the mission statement's own words.
+- **Photo captions.** For example, the "Madha Group campus" photo appears to show a sister institution.
+- **Spelling.** "Anakaputhur" is used consistently; the old site mixed "Anagaputhur" and "Anankaputhur".
+
+Broken links on the old site: the B.Sc Mathematics and B.Sc Hotel & Catering Management course pages return 404.
+In the redesign those two cards link to the enquiry form instead of a department page.
+
+## Before going live
+
+- **Enquiry form:** a static site has no backend, so the form currently opens the visitor's email app with the enquiry pre-filled to info@madhaarts.in. Connect it to a form handler (the existing WordPress contact form, Formspree, Google Forms, etc.) for direct submissions.
+- **Social links:** add the college's own social media links once confirmed.
+- **Photos:** newer, higher-resolution originals from the college would enhance even better. Drop them in `assets/img/originals/` and re-run the script.
