@@ -11,6 +11,7 @@
   --gold-500: #d8a53d;
   --gold-400: #e6bb61;
   --gold-700: #8f6414;
+  --gold-800: #7a540f;
   --paper: #faf7f1;
   --paper-2: #f3eee4;
   --white: #ffffff;
@@ -18,6 +19,8 @@
   --muted: #586274;
   --line: #e4ddcf;
   --line-dark: rgba(255, 255, 255, 0.14);
+  --field-border: #6b7486; /* 4.7:1 on the white card (WCAG 1.4.11 needs 3:1) */
+  --focus-ring: var(--navy-900);
 
   --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-body: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
@@ -59,7 +62,10 @@ h4 { font-size: 1.15rem; }
 p { margin: 0 0 1.1em; text-wrap: pretty; }
 ul { padding: 0; margin: 0; list-style: none; }
 svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-:focus-visible { outline: 3px solid var(--gold-500); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
+/* Focus ring: navy on light grounds, gold on dark ones */
+.topbar, .hero, .page-hero, .section--navy, .cta, .site-footer, .lightbox { --focus-ring: var(--gold-400); }
+.form-card { --focus-ring: var(--navy-900); }
 ::selection { background: var(--gold-400); color: var(--navy-950); }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -146,7 +152,7 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .brand img { width: 52px; height: auto; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
 .brand__name { font-family: var(--font-display); font-size: 1.28rem; font-weight: 600; color: var(--navy-900); letter-spacing: -0.005em; }
-.brand__sub { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold-700); margin-top: 3px; }
+.brand__sub { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold-700); margin-top: 3px; }
 
 .nav { display: flex; align-items: center; gap: 1.75rem; }
 .nav__list { display: flex; align-items: center; gap: 0.25rem; }
@@ -154,7 +160,7 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .nav__link {
   display: inline-flex; align-items: center; gap: 0.3rem;
   padding: 0.6rem 0.85rem; border-radius: 999px;
-  font-size: 0.95rem; font-weight: 500; color: var(--ink); text-decoration: none;
+  font-size: 0.95rem; font-weight: 500; color: var(--ink); text-decoration: none; white-space: nowrap;
   transition: background-color .2s, color .2s;
 }
 .nav__link .i { width: 0.95em; height: 0.95em; transition: transform .25s var(--ease); }
@@ -181,7 +187,8 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 }
 .nav-toggle .i { width: 22px; height: 22px; }
 
-@media (max-width: 1080px) {
+/* The full desktop nav needs ~1060px of content width, so collapse to the drawer below 1201px */
+@media (max-width: 1200px) {
   :root { --header-h: 72px; }
   /* backdrop-filter would make the header the containing block of the fixed drawer */
   .site-header { background: var(--paper); backdrop-filter: none; -webkit-backdrop-filter: none; }
@@ -195,16 +202,18 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
     clip-path: inset(0 0 0 100%); visibility: hidden;
     transition: clip-path .4s var(--ease), visibility .4s;
   }
-  .nav.is-open { clip-path: inset(0 0 0 0); visibility: visible; }
+  /* Become visible instantly on open (so focus can move into the drawer); the .4s delay stays for closing */
+  .nav.is-open { clip-path: inset(0 0 0 0); visibility: visible; transition: clip-path .4s var(--ease), visibility 0s; }
   .nav__list { flex-direction: column; align-items: stretch; gap: 0; }
   .nav__item { border-bottom: 1px solid var(--line); }
   .nav__link { width: 100%; padding: 0.95rem 0.25rem; border-radius: 0; font-size: 1.05rem; font-weight: 600; }
   .nav__link:hover, .nav__item:focus-within > .nav__link { background: none; }
   .nav__link[aria-current="page"] { box-shadow: none; color: var(--gold-700); }
   .nav__link .i { display: none; }
-  .menu { position: static; opacity: 1; visibility: visible; transform: none; min-width: 0; padding: 0 0 0.8rem 0.6rem; border: 0; box-shadow: none; background: none; }
+  /* inherit, not visible: a child set to visible escapes the closed drawer's visibility: hidden and stays tabbable */
+  .menu { position: static; opacity: 1; visibility: inherit; transform: none; min-width: 0; padding: 0 0 0.8rem 0.6rem; border: 0; box-shadow: none; background: none; }
   .menu::before { display: none; }
-  .has-menu:hover > .menu, .has-menu:focus-within > .menu { transform: none; }
+  .has-menu:hover > .menu, .has-menu:focus-within > .menu { transform: none; visibility: inherit; }
   .menu a { padding: 0.45rem 0.5rem; color: var(--muted); }
   .nav__cta { width: 100%; }
   .nav-close { position: absolute; top: 1rem; right: 1rem; }
@@ -212,14 +221,14 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
   .nav-backdrop { position: fixed; inset: 0; z-index: 45; background: rgba(8, 22, 41, 0.5); opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
   body.nav-open .nav-backdrop { opacity: 1; visibility: visible; }
 }
-@media (min-width: 1081px) { .nav-close, .nav-backdrop { display: none; } }
+@media (min-width: 1201px) { .nav-close, .nav-backdrop { display: none; } }
 @media (max-width: 720px) {
   .topbar__note, .topbar .hide-sm { display: none; }
   .topbar__inner { justify-content: center; }
   .topbar__links { gap: 1.1rem; }
   .brand img { width: 42px; }
   .brand__name { font-size: 1.05rem; }
-  .brand__sub { font-size: 0.64rem; }
+  .brand__sub { letter-spacing: 0.1em; }
 }
 @media (max-width: 380px) { .topbar__links li:nth-child(2) { display: none; } }
 
@@ -227,14 +236,21 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .hero { position: relative; isolation: isolate; color: var(--white); overflow: hidden; background: var(--navy-950); }
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 55%; animation: heroZoom 18s var(--ease) both; }
+/* A light grade keeps the photo bright; legibility comes from the soft scrim behind the text block below */
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(90deg, rgba(8, 22, 41, 0.92) 0%, rgba(8, 22, 41, 0.72) 38%, rgba(8, 22, 41, 0.18) 72%, rgba(8, 22, 41, 0.05) 100%),
-    linear-gradient(0deg, rgba(8, 22, 41, 0.75) 0%, rgba(8, 22, 41, 0) 40%);
+    linear-gradient(90deg, rgba(8, 22, 41, 0.5) 0%, rgba(8, 22, 41, 0.2) 50%, rgba(8, 22, 41, 0.04) 80%),
+    linear-gradient(0deg, rgba(8, 22, 41, 0.6) 0%, rgba(8, 22, 41, 0) 30%);
 }
 .hero__inner { min-height: clamp(560px, 76vh, 720px); display: flex; flex-direction: column; justify-content: center; padding-block: 4.5rem 8.5rem; }
-.hero__content { max-width: 690px; }
+.hero__content { max-width: 690px; position: relative; isolation: isolate; }
+/* Blurred navy patch that follows the text block at any width (intro text stays at 4.9:1 or better) */
+.hero__content::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: -5rem -5rem -5rem calc(-1 * var(--gutter) - 6rem);
+  background: rgba(8, 22, 41, 0.62); filter: blur(40px);
+}
 .hero h1 { color: var(--white); margin-bottom: 0.45em; }
 .hero h1 em { font-style: italic; color: var(--gold-400); }
 .hero__lead { font-size: clamp(1.08rem, 0.5vw + 1rem, 1.28rem); color: #d3dbe8; max-width: 56ch; margin-bottom: 2.2rem; }
@@ -250,7 +266,7 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .hero__badge .i { width: 15px; height: 15px; }
 @keyframes heroZoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 @media (max-width: 720px) {
-  .hero::before { background: linear-gradient(180deg, rgba(8, 22, 41, 0.72) 0%, rgba(8, 22, 41, 0.82) 55%, rgba(8, 22, 41, 0.92) 100%); }
+  .hero::before { background: linear-gradient(180deg, rgba(8, 22, 41, 0.2) 0%, rgba(8, 22, 41, 0.45) 100%); }
   .hero__media img { object-position: 58% 50%; }
   .hero__inner { padding-block: 3.5rem 8rem; }
 }
@@ -278,7 +294,13 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .page-hero { position: relative; isolation: isolate; background: var(--navy-900); color: var(--white); overflow: hidden; }
 .page-hero__media { position: absolute; inset: 0; z-index: -2; }
 .page-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
-.page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(8, 22, 41, 0.94) 10%, rgba(13, 31, 60, 0.7) 60%, rgba(13, 31, 60, 0.45)); }
+.page-hero::before {
+  /* Same approach as the home hero: stay dark until the 60ch intro ends, then fade */
+  --scrim-end: calc(var(--gutter) + 690px);
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, rgba(8, 22, 41, 0.94) 0%, rgba(13, 31, 60, 0.82) var(--scrim-end), rgba(13, 31, 60, 0.45) calc(var(--scrim-end) + 260px));
+}
+@media (min-width: 1241px) { .page-hero::before { --scrim-end: calc(50% - var(--container) / 2 + var(--gutter) + 690px); } }
 .page-hero__inner { padding-block: clamp(4rem, 8vw, 6.5rem); }
 .page-hero h1 { color: var(--white); font-size: clamp(2.3rem, 3.6vw + 1rem, 3.9rem); margin-bottom: 0.35em; }
 .page-hero p { color: #c9d2e0; max-width: 60ch; font-size: 1.12rem; margin: 0; }
@@ -341,8 +363,8 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .programme__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
 .programme__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--navy-100); color: var(--navy-800); }
 .programme__icon .i { width: 24px; height: 24px; stroke-width: 1.6; }
-.tag { display: inline-block; padding: 0.3rem 0.65rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--paper-2); color: var(--muted); }
-.tag--pg { background: #f6ead0; color: var(--gold-700); }
+.tag { display: inline-block; padding: 0.3rem 0.65rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--paper-2); color: var(--muted); }
+.tag--pg { background: #f6ead0; color: var(--gold-800); } /* 5.7:1; gold-700 was 4.4:1 at this size */
 .programme h3 { font-size: 1.4rem; margin-bottom: 0.2rem; }
 .programme p { font-size: 0.96rem; color: var(--muted); margin-bottom: 1.4rem; }
 .programme .programme__school { font-size: 0.85rem; font-weight: 500; color: var(--gold-700); margin-bottom: 0.9rem; }
@@ -421,14 +443,18 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .field input, .field select, .field textarea {
   width: 100%; min-height: 50px; padding: 0.75rem 0.95rem;
   font: 400 1rem var(--font-body); color: var(--ink);
-  background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px;
+  background: var(--white); border: 1.5px solid var(--field-border); border-radius: 10px;
+  box-shadow: inset 0 1px 2px rgba(13, 31, 60, 0.08);
   transition: border-color .2s, box-shadow .2s, background-color .2s;
   appearance: none; -webkit-appearance: none;
 }
 .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23586274' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.8rem center; padding-right: 2.6rem; }
 .field textarea { min-height: 110px; resize: vertical; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--navy-700); background: var(--white); box-shadow: 0 0 0 4px rgba(29, 61, 110, 0.12); }
-.field input:user-invalid, .field select:user-invalid { border-color: #c2413a; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--navy-700); }
+/* Errors: red alone is about as dark as the grey border, so add a thicker edge and a tint (not colour-only) */
+.field input:user-invalid, .field select:user-invalid { border-color: #c2413a; background-color: #fdf4f3; box-shadow: 0 0 0 1px #c2413a; }
+/* background-color, not the shorthand, so the select's arrow icon survives focus */
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--navy-900); background-color: var(--white); box-shadow: 0 0 0 1.5px var(--navy-900), 0 0 0 5px rgba(29, 61, 110, 0.14); }
 .form-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
 .form-foot small { color: var(--muted); font-size: 0.82rem; max-width: 34ch; line-height: 1.45; }
 .form-status { margin: 1rem 0 0; padding: 0.85rem 1rem; border-radius: 10px; background: #e9f4ec; color: #1f5a33; font-size: 0.93rem; }
@@ -437,7 +463,12 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .mosaic { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: clamp(150px, 16vw, 230px); gap: 1rem; }
 .tile { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--navy-800); margin: 0; }
 .tile button { all: unset; display: block; width: 100%; height: 100%; cursor: zoom-in; }
-.tile button:focus-visible { outline: 3px solid var(--gold-500); outline-offset: -3px; }
+.tile button:focus-visible { outline: 3px solid var(--gold-400); outline-offset: -3px; }
+/* The tile clips its children, so draw the ring on the tile itself where :has() is supported */
+@supports selector(:has(*)) {
+  .tile button:focus-visible { outline: none; }
+  .tile:has(button:focus-visible) { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+}
 .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
 .tile:hover img { transform: scale(1.05); }
 .tile figcaption {
@@ -445,7 +476,7 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
   background: linear-gradient(0deg, rgba(8, 22, 41, 0.88), rgba(8, 22, 41, 0));
   color: var(--white); font-size: 0.95rem; font-weight: 500; line-height: 1.35;
 }
-.tile figcaption small { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 0.2rem; }
+.tile figcaption small { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-400); margin-bottom: 0.2rem; }
 .tile--a { grid-column: span 7; grid-row: span 2; }
 .tile--b { grid-column: span 5; }
 .tile--c { grid-column: span 5; }
@@ -519,6 +550,10 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 /* ---------- Reveal on scroll ---------- */
 .js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
+/* Failsafe: main.js adds .reveal-ready once the observer is armed. If it never does (blocked, slow
+   or broken script), fade everything in after 2s rather than leaving sections invisible. */
+.js:not(.reveal-ready) [data-reveal] { animation: reveal-failsafe .6s var(--ease) 2s forwards; }
+@keyframes reveal-failsafe { to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -536,4 +571,6 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 @media print {
   .topbar, .site-header, .nav-backdrop, .hero__media, .page-hero__media, .site-footer, .cta { display: none !important; }
   body { background: #fff; }
+  /* Sections not yet scrolled into view would otherwise print blank */
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
 }
