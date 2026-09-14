@@ -16,10 +16,10 @@ python -m http.server 8000
 
 | File | Contents | Replaces (old site) |
 |---|---|---|
-| `index.html` | Hero, key facts, about, programme finder, principal's message, admissions + enquiry form, campus life, Madha Group | Home |
+| `index.html` | Hero, key facts, about, programme finder, principal's message, admissions + enquiry form, campus life, recent events, Madha Group | Home |
 | `about.html` | The college, mission statement & values, Madha Group + sister institutions, management team, principal's full message | About Us menu (5 pages) |
-| `academics.html` | All 9 programmes with filters, UG/PG admission criteria, how to apply | Admissions, Courses |
-| `campus-life.html` | Photo gallery with lightbox, social outreach | Gallery (was empty) |
+| `academics.html` | All 9 programmes with filters, career training & field visits, UG/PG admission criteria, how to apply | Admissions, Courses |
+| `campus-life.html` | Recent events, photo gallery with lightbox, social outreach | Gallery (was empty) |
 | `contact.html` | Address, phone, emails, map, enquiry form | Contact Us |
 | `before-after.html` | Drag-slider comparison of every original vs. enhanced photo (review page, not linked from the site) | — |
 
@@ -29,6 +29,7 @@ assets/js/main.js          mobile menu, programme filter, lightbox, enquiry form
 assets/img/                enhanced photos used by the site
 assets/img/originals/      untouched photos downloaded from the current site
 tools/enhance_images.py    the image enhancement pipeline
+tools/prepare_photos.py    crops the college's 2025–26 event photos out of their collages
 ```
 
 Design: deep navy + warm gold drawn from the college emblem, Newsreader (headings) and Inter (body) from Google Fonts,
@@ -52,6 +53,20 @@ To re-run, download the weights into `tools/models/`:
 then `pip install torch spandrel opencv-python-headless pillow numpy` and `python tools/enhance_images.py`.
 It runs on CPU in about 10 minutes.
 
+### Main block photo
+
+`campus-main-block.jpg` (home page hero and its "About the college" image) was supplied by the college already edited, and is used unchanged at 1600px wide.
+The older `campus-hero.jpg` and `campus-front.jpg` are still used on the About, Contact and Campus Life pages.
+
+### Event photos (2025–26)
+
+The photos behind **Recent events**, the newer gallery tiles and the Academics "Beyond the classroom" section came from the college as WhatsApp images.
+Most were social-media collages, so `tools/prepare_photos.py` cuts a single frame out of each, trims the white collage gutters and saves a web JPEG without metadata.
+They are not AI-enhanced. Run `python tools/prepare_photos.py "<folder of the supplied photos>"` to rebuild them.
+
+Not used: the three admissions flyers (graphics, not photos), the event posters inside the collages, and a group photo with a burned-in camera timestamp.
+Some collage frames are small (about 520–800px wide), and the vetiver-planting frame is a soft video still, so the original files would look sharper.
+
 ## Content notes: please review with the college
 
 All names, facts, contact details, the mission statement, leadership bios and the principal's message are taken from the current site.
@@ -68,6 +83,11 @@ Things **written new** that the college should confirm:
 - **Programme descriptions and durations.** These are short, generic summaries; durations follow the University of Madras norm of UG 3 years and PG 2 years.
 - **Values cards** on the About page, expanded from the mission statement's own words.
 - **Photo captions.** For example, the "Madha Group campus" photo appears to show a sister institution.
+- **Event write-ups.** Dates, speakers, venues and partners come from the event posters. Some details were inferred from the photos and need checking:
+  - the Biotechnology study tour (13 Feb 2026) was to a mushroom farm;
+  - the Tamil Department's "museum" is the Government Museum;
+  - the blue-T-shirt industrial visit was to an ITC factory;
+  - "Assembly with flags" and "Students and faculty together" need the real occasion and venue.
 - **Spelling.** "Anakaputhur" is used consistently; the old site mixed "Anagaputhur" and "Anankaputhur".
 
 Broken links on the old site: the B.Sc Mathematics and B.Sc Hotel & Catering Management course pages return 404.
