@@ -62,6 +62,8 @@ The photos behind **Recent events**, the newer gallery tiles and the Academics "
 Most were social-media collages, so `tools/prepare_photos.py` cuts a single frame out of each, trims the white collage gutters and saves a web JPEG without metadata.
 They are not AI-enhanced. Run `python tools/prepare_photos.py "<folder of the supplied photos>"` to rebuild them.
 
+The Campus Life page header, `event-teachers-day.jpg` (Teachers' Day, September 2026), came as a single photo rather than a collage and is used unchanged at 1600px wide.
+
 Not used: the three admissions flyers (graphics, not photos), the event posters inside the collages, and a group photo with a burned-in camera timestamp.
 Some collage frames are small (about 520–800px wide), and the vetiver-planting frame is a soft video still, so the original files would look sharper.
 
