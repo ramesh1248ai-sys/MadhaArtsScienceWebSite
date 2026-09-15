@@ -21,13 +21,11 @@ python -m http.server 8000
 | `academics.html` | All 9 programmes with filters, career training & field visits, UG/PG admission criteria, how to apply | Admissions, Courses |
 | `campus-life.html` | Recent events, photo gallery with lightbox, social outreach | Gallery (was empty) |
 | `contact.html` | Address, phone, emails, map, enquiry form | Contact Us |
-| `before-after.html` | Drag-slider comparison of every original vs. enhanced photo (review page, not linked from the site) | — |
 
 ```
 assets/css/styles.css      design system + all components
 assets/js/main.js          mobile menu, programme filter, lightbox, enquiry form, scroll reveal
 assets/img/                enhanced photos used by the site
-assets/img/originals/      untouched photos downloaded from the current site
 tools/enhance_images.py    the image enhancement pipeline
 tools/prepare_photos.py    crops the college's 2025–26 event photos out of their collages
 ```
@@ -45,7 +43,7 @@ Every photo went through `tools/enhance_images.py`:
    - No generative face restoration (GFPGAN/CodeFormer), because those tools change people's facial features.
    - Two small building signs are masked, because the AI invented letters there.
 
-To re-run, download the weights into `tools/models/`:
+The untouched source photos are no longer kept in the repository. To re-run, put the originals in `assets/img/originals/` and download the weights into `tools/models/`:
 
 - https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth
 - https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth
@@ -56,7 +54,7 @@ It runs on CPU in about 10 minutes.
 ### Main block photo
 
 `campus-main-block.jpg` (home page hero, its "About the college" image, and the About page header) was supplied by the college already edited, and is used unchanged at 1600px wide.
-Of the older campus photos, `campus-hero.jpg` still heads the Contact page; `campus-front.jpg` now appears only on the `before-after.html` review page.
+Of the older campus photos, `campus-hero.jpg` still heads the Contact page; `campus-front.jpg` is no longer used on any page.
 
 ### Event photos (2025–26)
 

@@ -1,5 +1,5 @@
-# Deploy only the public site. Everything else (the before/after review page, README,
-# image tools, original photos, notes and backups) stays in the repository but is not uploaded.
+# Deploy only the public site. Everything else (README, image tools, original photos,
+# notes and backups) stays out of the upload.
 /*
 !/index.html
 !/about.html
