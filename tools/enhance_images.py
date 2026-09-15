@@ -137,7 +137,6 @@ GEN, PLUS = "realesr-general-x4v3.pth", "RealESRGAN_x4plus.pth"
 FACE = dict(wb=0.3, clahe=0.2, vib=0.05, curve=0.08, sharpen=0.1)
 JOBS = [
     ("madha-banner-new.jpg", "campus-hero.jpg", None, GEN, 2400, 0.55, dict(sky=0.55, wb=0.55, clahe=0.5)),
-    ("abt-home.jpg", "campus-front.jpg", None, PLUS, 1800, (0.75, [(0.445, 0.395, 0.55, 0.455)]), dict(sky=0.6, wb=0.55, clahe=0.5)),
     ("group.jpg", "madha-group-campus.jpg", None, PLUS, 1400, (0.85, [(0.335, 0.325, 0.48, 0.375)]), dict(sky=0.35, wb=0.4)),
     ("madha-group.jpg", "classroom.jpg", None, GEN, 1600, 0.5, dict(wb=0.45, vib=0.12)),
     ("banner-3.jpg", "event-college-day.jpg", None, GEN, 1800, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),

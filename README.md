@@ -37,11 +37,11 @@ responsive from 360px phones to wide desktops, keyboard accessible, respects red
 
 Every photo went through `tools/enhance_images.py`:
 
-1. **AI super-resolution with Real-ESRGAN.** `RealESRGAN_x4plus` was used on the smallest, most degraded images (campus front, group campus, emblem) and the faster `realesr-general-x4v3` on everything else. The AI output is blended with a plain resample so textures stay natural.
+1. **AI super-resolution with Real-ESRGAN.** `RealESRGAN_x4plus` was used on the smallest, most degraded images (group campus, emblem) and the faster `realesr-general-x4v3` on everything else. The AI output is blended with a plain resample so textures stay natural.
 2. **Photographic grade:** white balance and levels, CLAHE local contrast, vibrance, a gentle S-curve, a graduated filter on washed-out skies, and light output sharpening.
 3. **Authenticity safeguards:**
    - No generative face restoration (GFPGAN/CodeFormer), because those tools change people's facial features.
-   - Two small building signs are masked, because the AI invented letters there.
+   - A small building sign is masked, because the AI invented letters there.
 
 The untouched source photos are no longer kept in the repository. To re-run, put the originals in `assets/img/originals/` and download the weights into `tools/models/`:
 
@@ -54,7 +54,7 @@ It runs on CPU in about 10 minutes.
 ### Main block photo
 
 `campus-main-block.jpg` (home page hero, its "About the college" image, and the About page header) was supplied by the college already edited, and is used unchanged at 1600px wide.
-Of the older campus photos, `campus-hero.jpg` still heads the Contact page; `campus-front.jpg` is no longer used on any page.
+Of the older campus photos, `campus-hero.jpg` still heads the Contact page.
 
 ### Event photos (2025–26)
 
