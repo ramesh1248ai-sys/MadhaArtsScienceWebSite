@@ -139,6 +139,7 @@ JOBS = [
     ("group.jpg", "madha-group-campus.jpg", None, PLUS, 1400, (0.85, [(0.335, 0.325, 0.48, 0.375)]), dict(sky=0.35, wb=0.4)),
     ("madha-group.jpg", "classroom.jpg", None, GEN, 1600, 0.5, dict(wb=0.45, vib=0.12)),
     ("banner-3.jpg", "event-college-day.jpg", None, GEN, 1800, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
+    ("TeachersDay Sep 2026.jpeg", "event-teachers-day.jpg", None, GEN, 2000, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("banner-2.jpg", "event-christmas.jpg", None, GEN, 1800, 0.5, dict(wb=0.25, clahe=0.4, vib=0.05)),
     ("banner-4.jpg", "sports-cricket.jpg", None, GEN, 1800, 0.55, dict(wb=0.5, clahe=0.5, sky=0.3)),
     ("banner-5.jpg", "outreach-traffic-awareness.jpg", None, GEN, 1800, 0.5, dict(wb=0.45, clahe=0.45)),
