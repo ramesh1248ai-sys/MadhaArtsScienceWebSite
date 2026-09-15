@@ -125,8 +125,11 @@ def grade(rgb, wb=0.5, clahe=0.5, vib=0.22, curve=0.12, sky=0.0, sharpen=0.18, w
         out = cv2.addWeighted(out, 1 + sharpen, blur, -sharpen, 0)
     return out
 
-def load(name):
-    return np.array(Image.open(ORIG / name).convert("RGB"))
+def load(src):
+    """`src` is a file in originals/, or (file, crop box) to cut one frame out of a collage."""
+    name, box = src if isinstance(src, tuple) else (src, None)
+    im = Image.open(ORIG / name).convert("RGB")
+    return np.array(im.crop(box) if box else im)
 
 def save(rgb, name, q=84):
     Image.fromarray(rgb).save(OUT / name, "JPEG", quality=q, optimize=True, progressive=True)
@@ -140,6 +143,8 @@ JOBS = [
     ("madha-group.jpg", "classroom.jpg", None, GEN, 1600, 0.5, dict(wb=0.45, vib=0.12)),
     ("banner-3.jpg", "event-college-day.jpg", None, GEN, 1800, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("TeachersDay Sep 2026.jpeg", "event-teachers-day.jpg", None, GEN, 2000, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
+    # A 624px collage frame; the slide text and the trainer's head keep the plain resample
+    (("CompusToCorporateTraining 2026.jpeg", (118, 848, 742, 1150)), "event-campus-to-corporate.jpg", None, GEN, 1600, (0.6, [(0.41, 0.23, 0.69, 0.46)]), dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("banner-2.jpg", "event-christmas.jpg", None, GEN, 1800, 0.5, dict(wb=0.25, clahe=0.4, vib=0.05)),
     ("banner-4.jpg", "sports-cricket.jpg", None, GEN, 1800, 0.55, dict(wb=0.5, clahe=0.5, sky=0.3)),
     ("banner-5.jpg", "outreach-traffic-awareness.jpg", None, GEN, 1800, 0.5, dict(wb=0.45, clahe=0.45)),
@@ -174,6 +179,7 @@ if __name__ == "__main__":
             rgb = resize_w(rgb, pre)
         strength, protect = strength if isinstance(strength, tuple) else (strength, ())
         save(grade(restore(rgb, mdl, final, strength, protect), **g), dst)
-        print(f"{dst:34s} {src:30s} -> {final}px  {time.time() - t:6.1f}s", flush=True)
+        name = src[0] if isinstance(src, tuple) else src
+        print(f"{dst:34s} {name:30s} -> {final}px  {time.time() - t:6.1f}s", flush=True)
     if not only or "emblem.png" in only:
         t = time.time(); emblem(); print(f"emblem.png  {time.time() - t:.1f}s", flush=True)

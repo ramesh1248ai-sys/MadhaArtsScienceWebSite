@@ -26,7 +26,7 @@ JOBS = [
     ("TNPSC CoachingProgram.jpeg", (558, 355, 1075, 740), "event-tnpsc-coaching.jpg"),
     ("CyberSafetyAwareness 2.jpeg", (202, 1145, 880, 1462), "event-cyber-safety.jpg"),
     ("WhatsApp Image 2026-09-14 at 20.52.45 (1).jpeg", (148, 1058, 928, 1437), "event-biotech-study-tour.jpg"),
-    ("CompusToCorporateTraining 2026.jpeg", (118, 848, 742, 1150), "event-campus-to-corporate.jpg"),
+    # event-campus-to-corporate.jpg is cut and AI-enhanced by enhance_images.py instead
     ("StreetPlay.jpeg", (532, 0, 1065, 530), "event-street-play.jpg"),
     ("VettiverNaduVizha.jpeg", (0, 1065, 800, 1599), "event-vettiver-planting.jpg"),
     ("CoastalCleanUp.jpeg", (835, 1065, 1565, 1599), "event-coastal-cleanup.jpg"),

@@ -61,8 +61,10 @@ The photos behind **Recent events**, the newer gallery tiles and the Academics "
 Most were social-media collages, so `tools/prepare_photos.py` cuts a single frame out of each, trims the white collage gutters and saves a web JPEG without metadata.
 They are not AI-enhanced. Run `python tools/prepare_photos.py "<folder of the supplied photos>"` to rebuild them.
 
-The Campus Life page header, `event-teachers-day.jpg` (Teachers' Day, September 2026), came as a single photo rather than a collage.
-Because it fills the full page width, it is AI-enhanced like the older photos: `tools/enhance_images.py` upscales the 1600px WhatsApp image to 2000px with `realesr-general-x4v3` at half strength and a light grade (source file `TeachersDay Sep 2026.jpeg`).
+Two event photos are AI-enhanced by `tools/enhance_images.py` instead, because they are shown large:
+
+- The Campus Life page header, `event-teachers-day.jpg` (Teachers' Day, September 2026), came as a single photo rather than a collage. The 1600px WhatsApp image is upscaled to 2000px with `realesr-general-x4v3` at half strength and a light grade (source file `TeachersDay Sep 2026.jpeg`).
+- `event-campus-to-corporate.jpg` fills the Academics "Beyond the classroom" image. The script cuts the 624px frame out of `CompusToCorporateTraining 2026.jpeg` and upscales it to 1600px at 60% strength. The slide text and the trainer's head keep the plain resample, because the AI invented letters on the slide.
 
 Not used: the three admissions flyers (graphics, not photos), the event posters inside the collages, and a group photo with a burned-in camera timestamp.
 Some collage frames are small (about 520–800px wide), and the vetiver-planting frame is a soft video still, so the original files would look sharper.
