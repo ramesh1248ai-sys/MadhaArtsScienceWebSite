@@ -306,7 +306,9 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .page-hero p { color: #c9d2e0; max-width: 60ch; font-size: 1.12rem; margin: 0; }
 /* Bright variant: the home hero's light grade, with legibility from the blurred patch behind .page-hero__content */
 .page-hero--bright::before { background: linear-gradient(90deg, rgba(8, 22, 41, 0.5) 0%, rgba(8, 22, 41, 0.2) 50%, rgba(8, 22, 41, 0.04) 80%); }
-.page-hero--bright .crumbs { color: #b9c6d8; } /* the default crumb grey drops below 4.5:1 over the brighter photo */
+/* Lighter text than the default hero keeps 4.5:1 over bright photo detail such as white lab coats */
+.page-hero--bright .crumbs { color: #c9d2e0; }
+.page-hero--bright p { color: #d3dbe8; }
 @media (max-width: 720px) { .page-hero--bright::before { background: linear-gradient(180deg, rgba(8, 22, 41, 0.2) 0%, rgba(8, 22, 41, 0.45) 100%); } }
 /* Split variant: a group photo loses its faces under the scrim, so it sits beside the text instead */
 .page-hero--split::before { content: none; }
