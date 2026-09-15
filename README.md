@@ -53,8 +53,8 @@ It runs on CPU in about 10 minutes.
 
 ### Main block photo
 
-`campus-main-block.jpg` (home page hero, its "About the college" image, and the About page header) was supplied by the college already edited, and is used unchanged at 1600px wide.
-Of the older campus photos, `campus-hero.jpg` still heads the Contact page.
+`campus-main-block.jpg` (home page hero, its "About the college" image, and the About and Contact page headers) was supplied by the college already edited, and is used unchanged at 1600px wide.
+The older `campus-hero.jpg` is no longer used on any page.
 
 ### Event photos (2025–26)
 
