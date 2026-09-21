@@ -310,8 +310,14 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .page-hero--bright .crumbs { color: #c9d2e0; }
 .page-hero--bright p { color: #d3dbe8; }
 @media (max-width: 720px) { .page-hero--bright::before { background: linear-gradient(180deg, rgba(8, 22, 41, 0.2) 0%, rgba(8, 22, 41, 0.45) 100%); } }
-/* Auditorium stage: sit low enough that the painted college name clears the page title instead of running into it */
-.page-hero--stage .page-hero__media img { object-position: center 78%; }
+/* Flat variant: no blurred patch behind the text, so the photo is not clouded by a soft dark panel.
+   The scrim carries legibility on its own instead, deeper on the left and fading out past the intro (text stays at 4.5:1 or better). */
+.page-hero--flat .page-hero__content::before { content: none; }
+.page-hero--flat.page-hero--bright::before {
+  background: linear-gradient(90deg, rgba(8, 22, 41, 0.86) 0%, rgba(8, 22, 41, 0.66) var(--scrim-end), rgba(8, 22, 41, 0.22) calc(var(--scrim-end) + 260px));
+}
+/* Phones crop into the bright middle of the photo, so the wash starts deeper: the breadcrumbs sit over ceiling lights and lit walls */
+@media (max-width: 720px) { .page-hero--flat.page-hero--bright::before { background: linear-gradient(180deg, rgba(8, 22, 41, 0.74) 0%, rgba(8, 22, 41, 0.8) 100%); } }
 .crumbs { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 1.2rem; font-size: 0.85rem; color: #9fb0c8; }
 .crumbs a { text-decoration: none; color: #cdd7e6; }
 .crumbs a:hover { color: var(--gold-400); }

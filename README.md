@@ -59,9 +59,11 @@ The About page header uses `campus-entrance.jpg` instead: staff and students in 
 Because it fills the full page width, it is AI-enhanced like the Campus Life header: `tools/enhance_images.py` upscales it to 2000px with `realesr-general-x4v3` at half strength and a light grade.
 The faces and the painted college sign on the back wall were compared against a plain resample and are unchanged apart from being sharper.
 
-The Academics page header uses `campus-auditorium.jpg`, the auditorium stage (`auditoriam5.jpeg`), enhanced the same way but with a lighter grade, since the college had already lit and edited the photo.
-The painted college name across the back wall keeps the plain resample, so the AI cannot reshape the lettering.
-That wall is also why this header carries the extra `page-hero--stage` class: it lowers the crop so the painted name sits above the page title instead of running through it.
+The Academics page header uses `campus-mural.jpg`, the painted mural wall in the same entrance hall (`mainblockentrance1.jpeg`), enhanced the same way from a 1040px photo.
+Its captions — "Knowledge is power", the framed college name, the Tamil plaque and "Study, strive, shine" — are each covered by a protect box, so the AI cannot reshape that lettering.
+
+Both of these headers carry `page-hero--flat`, which drops the blurred patch that normally sits behind the header text.
+Without it the photo is unclouded, and the scrim alone keeps the text legible: measured over the glyph pixels, the worst case is 5.0:1 on Academics and 5.4:1 on About.
 
 ### Event photos (2025–26)
 
