@@ -150,6 +150,10 @@ JOBS = [
      dict(wb=0.25, clahe=0.3, vib=0.05)),
     # Painted flat colour, so a gentle blend is enough; "Learn, grow, succeed" keeps the plain resample
     ("mainblockentrance4.jpeg", "campus-mural-stairway.jpg", None, GEN, 1400, (0.45, [(0.17, 0.19, 0.45, 0.245)]), dict(wb=0.25, clahe=0.25, vib=0.05)),
+    # The foyer's door signs and painted captions are small, so each one keeps the plain resample
+    ("mainblockentrance3.jpeg", "campus-foyer.jpg", None, GEN, 1600,
+     (0.5, [(0.08, 0.34, 0.16, 0.40), (0.19, 0.28, 0.28, 0.32), (0.64, 0.38, 0.70, 0.42), (0.69, 0.39, 0.85, 0.48), (0.86, 0.34, 0.96, 0.39)]),
+     dict(wb=0.25, clahe=0.3, vib=0.05)),
     # A 624px collage frame; the slide text and the trainer's head keep the plain resample
     (("CompusToCorporateTraining 2026.jpeg", (118, 848, 742, 1150)), "event-campus-to-corporate.jpg", None, GEN, 1600, (0.6, [(0.41, 0.23, 0.69, 0.46)]), dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("banner-2.jpg", "event-christmas.jpg", None, GEN, 1800, 0.5, dict(wb=0.25, clahe=0.4, vib=0.05)),

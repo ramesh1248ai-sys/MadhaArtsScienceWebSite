@@ -53,7 +53,10 @@ It runs on CPU in about 10 minutes.
 
 ### Main block photo
 
-`campus-main-block.jpg` (home page hero, its "About the college" image, and the Contact page header) was supplied by the college already edited, and is used unchanged at 1600px wide.
+`campus-main-block.jpg` (home page hero and the Contact page header) was supplied by the college already edited, and is used unchanged at 1600px wide.
+
+The home page "About the college" image is `campus-foyer.jpg`, the length of the main block foyer (`mainblockentrance3.jpeg`), enhanced to 1600px.
+The door signs and the painted captions on both walls are small, so each is covered by a protect box and keeps the plain resample.
 
 The About page header uses `campus-entrance.jpg` instead: staff and students in the main block entrance hall, supplied as a single 1280px photo (`mainblockentrance0.jpeg`).
 Because it fills the full page width, it is AI-enhanced like the Campus Life header: `tools/enhance_images.py` upscales it to 2000px with `realesr-general-x4v3` at half strength and a light grade.
