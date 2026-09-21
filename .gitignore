@@ -1,2 +1,6 @@
 .vercel
 .env*
+
+# Local-only inputs for tools/enhance_images.py (see README)
+assets/img/originals/
+tools/models/

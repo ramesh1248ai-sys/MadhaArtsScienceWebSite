@@ -56,13 +56,14 @@ It runs on CPU in about 10 minutes.
 `campus-main-block.jpg` (home page hero, its "About the college" image, and the Contact page header) was supplied by the college already edited, and is used unchanged at 1600px wide.
 
 The About page header uses `campus-entrance.jpg` instead: staff and students in the main block entrance hall, supplied as a single 1280px photo (`mainblockentrance0.jpeg`).
-`tools/prepare_photos.py` only strips its metadata and saves a web JPEG; it is not upscaled, so it is softer than the other full-width headers on a large screen.
+Because it fills the full page width, it is AI-enhanced like the Campus Life header: `tools/enhance_images.py` upscales it to 2000px with `realesr-general-x4v3` at half strength and a light grade.
+The faces and the painted college sign on the back wall were compared against a plain resample and are unchanged apart from being sharper.
 
 ### Event photos (2025–26)
 
 The photos behind **Recent events**, the newer gallery tiles and the Academics "Beyond the classroom" section came from the college as WhatsApp images.
 Most were social-media collages, so `tools/prepare_photos.py` cuts a single frame out of each, trims the white collage gutters and saves a web JPEG without metadata.
-They are not AI-enhanced. Run `python tools/prepare_photos.py "<folder of the supplied photos>" ...` to rebuild them; the photos arrived in more than one folder, so the script takes as many folders as you pass it and looks for each source file in all of them.
+They are not AI-enhanced. Run `python tools/prepare_photos.py "<folder of the supplied photos>"` to rebuild them.
 
 Two event photos are AI-enhanced by `tools/enhance_images.py` instead, because they are shown large:
 
