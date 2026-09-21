@@ -310,6 +310,8 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .page-hero--bright .crumbs { color: #c9d2e0; }
 .page-hero--bright p { color: #d3dbe8; }
 @media (max-width: 720px) { .page-hero--bright::before { background: linear-gradient(180deg, rgba(8, 22, 41, 0.2) 0%, rgba(8, 22, 41, 0.45) 100%); } }
+/* Auditorium stage: sit low enough that the painted college name clears the page title instead of running into it */
+.page-hero--stage .page-hero__media img { object-position: center 78%; }
 .crumbs { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 1.2rem; font-size: 0.85rem; color: #9fb0c8; }
 .crumbs a { text-decoration: none; color: #cdd7e6; }
 .crumbs a:hover { color: var(--gold-400); }

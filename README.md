@@ -59,6 +59,10 @@ The About page header uses `campus-entrance.jpg` instead: staff and students in 
 Because it fills the full page width, it is AI-enhanced like the Campus Life header: `tools/enhance_images.py` upscales it to 2000px with `realesr-general-x4v3` at half strength and a light grade.
 The faces and the painted college sign on the back wall were compared against a plain resample and are unchanged apart from being sharper.
 
+The Academics page header uses `campus-auditorium.jpg`, the auditorium stage (`auditoriam5.jpeg`), enhanced the same way but with a lighter grade, since the college had already lit and edited the photo.
+The painted college name across the back wall keeps the plain resample, so the AI cannot reshape the lettering.
+That wall is also why this header carries the extra `page-hero--stage` class: it lowers the crop so the painted name sits above the page title instead of running through it.
+
 ### Event photos (2025–26)
 
 The photos behind **Recent events**, the newer gallery tiles and the Academics "Beyond the classroom" section came from the college as WhatsApp images.

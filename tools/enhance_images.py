@@ -144,6 +144,8 @@ JOBS = [
     ("banner-3.jpg", "event-college-day.jpg", None, GEN, 1800, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("TeachersDay Sep 2026.jpeg", "event-teachers-day.jpg", None, GEN, 2000, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("mainblockentrance0.jpeg", "campus-entrance.jpg", None, GEN, 2000, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
+    # Already a clean studio-lit photo, so only a light grade; the stage lettering keeps the plain resample
+    ("auditoriam5.jpeg", "campus-auditorium.jpg", None, GEN, 2000, (0.5, [(0.1, 0.3, 0.9, 0.52)]), dict(wb=0.2, clahe=0.25, vib=0.05)),
     # A 624px collage frame; the slide text and the trainer's head keep the plain resample
     (("CompusToCorporateTraining 2026.jpeg", (118, 848, 742, 1150)), "event-campus-to-corporate.jpg", None, GEN, 1600, (0.6, [(0.41, 0.23, 0.69, 0.46)]), dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("banner-2.jpg", "event-christmas.jpg", None, GEN, 1800, 0.5, dict(wb=0.25, clahe=0.4, vib=0.05)),
