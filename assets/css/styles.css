@@ -325,6 +325,12 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 
 /* ---------- Split / media layouts ---------- */
 .split { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2.5rem, 6vw, 5.5rem); align-items: center; }
+/* Side by side, the photo runs the full height of the text beside it rather than keeping its own aspect ratio.
+   A landscape photo is then cropped to a tall box, so it holds to the left where the mural's painted words are. */
+@media (min-width: 901px) {
+  .split--match { align-items: stretch; }
+  .split--match .media-frame img { height: 100%; aspect-ratio: auto; object-position: 32% center; }
+}
 .split--reverse > :first-child { order: 2; }
 @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .split--reverse > :first-child { order: 0; } }
 
