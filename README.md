@@ -66,7 +66,6 @@ The Academics page header uses `campus-mural.jpg`, the painted mural wall in the
 Its captions — "Knowledge is power", the framed college name, the Tamil plaque and "Study, strive, shine" — are each covered by a protect box, so the AI cannot reshape that lettering.
 
 The image beside "Two decades of wholesome education" on the About page is `campus-mural-stairway.jpg`, the "Learn, grow, succeed" stairway mural (`mainblockentrance4.jpeg`), enhanced to 1400px with the painted words protected.
-`classroom.jpg` still fills the "In the classroom" tile in the home page gallery.
 
 Both of these headers carry `page-hero--flat`, which drops the blurred patch that normally sits behind the header text.
 Without it the photo is unclouded, and the scrim alone keeps the text legible: measured over the glyph pixels, the worst case is 5.0:1 on Academics and 5.4:1 on About.

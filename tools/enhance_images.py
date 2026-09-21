@@ -9,7 +9,7 @@ Usage (from the project root):
     pip install torch spandrel opencv-python-headless pillow numpy
     # put the two Real-ESRGAN weight files in tools/models/ (see README.md)
     python tools/enhance_images.py                 # every image
-    python tools/enhance_images.py classroom.jpg   # a single output
+    python tools/enhance_images.py campus-foyer.jpg  # a single output
 """
 import os, sys, time
 from pathlib import Path
@@ -140,8 +140,6 @@ GEN, PLUS = "realesr-general-x4v3.pth", "RealESRGAN_x4plus.pth"
 FACE = dict(wb=0.3, clahe=0.2, vib=0.05, curve=0.08, sharpen=0.1)
 JOBS = [
     ("group.jpg", "madha-group-campus.jpg", None, PLUS, 1400, (0.85, [(0.335, 0.325, 0.48, 0.375)]), dict(sky=0.35, wb=0.4)),
-    ("madha-group.jpg", "classroom.jpg", None, GEN, 1600, 0.5, dict(wb=0.45, vib=0.12)),
-    ("banner-3.jpg", "event-college-day.jpg", None, GEN, 1800, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("TeachersDay Sep 2026.jpeg", "event-teachers-day.jpg", None, GEN, 2000, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     ("mainblockentrance0.jpeg", "campus-entrance.jpg", None, GEN, 2000, 0.5, dict(wb=0.3, clahe=0.35, vib=0.1)),
     # The painted mural is covered in small captions, so each one keeps the plain resample
@@ -156,7 +154,6 @@ JOBS = [
      dict(wb=0.25, clahe=0.3, vib=0.05)),
     # A 624px collage frame; the slide text and the trainer's head keep the plain resample
     (("CompusToCorporateTraining 2026.jpeg", (118, 848, 742, 1150)), "event-campus-to-corporate.jpg", None, GEN, 1600, (0.6, [(0.41, 0.23, 0.69, 0.46)]), dict(wb=0.3, clahe=0.35, vib=0.1)),
-    ("banner-2.jpg", "event-christmas.jpg", None, GEN, 1800, 0.5, dict(wb=0.25, clahe=0.4, vib=0.05)),
     ("banner-4.jpg", "sports-cricket.jpg", None, GEN, 1800, 0.55, dict(wb=0.5, clahe=0.5, sky=0.3)),
     ("banner-5.jpg", "outreach-traffic-awareness.jpg", None, GEN, 1800, 0.5, dict(wb=0.45, clahe=0.45)),
     ("banner-6.jpg", "outreach-relief.jpg", None, GEN, 1800, 0.5, dict(wb=0.45, clahe=0.45)),
