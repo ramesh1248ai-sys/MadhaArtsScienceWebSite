@@ -55,6 +55,7 @@ JOBS = [
     ("schooloutreach6.jpeg", None, "outreach-school-talk.jpg"),
     ("sportsday3.jpeg", None, "sports-team-men.jpg"),
     ("sportsday4.jpeg", None, "sports-team-women.jpg"),
+    ("basketballcourt.jpeg", None, "sports-basketball.jpg"),
 ]
 
 def trim_gutters(im, limit=24):

@@ -77,7 +77,7 @@ The photos behind **Recent events**, the newer gallery tiles and the Academics "
 Most were social-media collages, so `tools/prepare_photos.py` cuts a single frame out of each, trims the white collage gutters and saves a web JPEG without metadata.
 They are not AI-enhanced. The photos arrived in more than one folder, so the script takes as many folders as you pass it and looks for each source file in all of them: `python tools/prepare_photos.py "<folder>" "<another folder>"`.
 
-A second batch of single photos (not collages) fills the newer Campus Life gallery tiles: graduation day, the library, a Madha Group function, the Coast Guard cleanup day, the Meendum Manjappai campaign, a school awareness session and the two team photographs.
+A second batch of single photos (not collages) fills the newer Campus Life gallery tiles: graduation day, the library, a Madha Group function, the Coast Guard cleanup day, the Meendum Manjappai campaign, a school awareness session, the two team photographs and the basketball court.
 The batch also held two more school photographs and a second Manjappai one, which are left out because they repeat the tiles above.
 They are used at their supplied size, between 1135px and 1600px wide, with only their metadata stripped.
 
