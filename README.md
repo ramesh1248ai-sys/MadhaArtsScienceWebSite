@@ -66,7 +66,7 @@ The Academics page header uses `campus-mural.jpg`, the painted mural wall in the
 Its captions — "Knowledge is power", the framed college name, the Tamil plaque and "Study, strive, shine" — are each covered by a protect box, so the AI cannot reshape that lettering.
 
 The image beside "Two decades of wholesome education" on the About page is `campus-mural-stairway.jpg`, the "Learn, grow, succeed" stairway mural (`mainblockentrance4.jpeg`), enhanced to 1400px with the painted words protected.
-`classroom.jpg` still fills the "In the classroom" tiles in the home page and Campus Life galleries.
+`classroom.jpg` still fills the "In the classroom" tile in the home page gallery.
 
 Both of these headers carry `page-hero--flat`, which drops the blurred patch that normally sits behind the header text.
 Without it the photo is unclouded, and the scrim alone keeps the text legible: measured over the glyph pixels, the worst case is 5.0:1 on Academics and 5.4:1 on About.
@@ -75,7 +75,11 @@ Without it the photo is unclouded, and the scrim alone keeps the text legible: m
 
 The photos behind **Recent events**, the newer gallery tiles and the Academics "Beyond the classroom" section came from the college as WhatsApp images.
 Most were social-media collages, so `tools/prepare_photos.py` cuts a single frame out of each, trims the white collage gutters and saves a web JPEG without metadata.
-They are not AI-enhanced. Run `python tools/prepare_photos.py "<folder of the supplied photos>"` to rebuild them.
+They are not AI-enhanced. The photos arrived in more than one folder, so the script takes as many folders as you pass it and looks for each source file in all of them: `python tools/prepare_photos.py "<folder>" "<another folder>"`.
+
+A second batch of single photos (not collages) fills the newer Campus Life gallery tiles: graduation day, the library, a Madha Group function, the Coast Guard cleanup day, the Meendum Manjappai campaign, a school awareness session and the two team photographs.
+The batch also held two more school photographs and a second Manjappai one, which are left out because they repeat the tiles above.
+They are used at their supplied size, between 1135px and 1600px wide, with only their metadata stripped.
 
 Two event photos are AI-enhanced by `tools/enhance_images.py` instead, because they are shown large:
 

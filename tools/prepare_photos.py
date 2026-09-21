@@ -8,9 +8,12 @@ these are recent phone photos, and the collage frames are too small to upscale w
 Skipped from the batch: the three admissions flyers (graphics, not photos), the
 event posters inside the collages, and a group photo with a burned-in timestamp.
 
+The photos came in more than one folder, so the script takes as many folders as
+you pass it and looks for each job's file in all of them.
+
 Usage (from the project root):
     pip install pillow numpy
-    python tools/prepare_photos.py "C:/Users/you/Downloads/MadhaPhotos"
+    python tools/prepare_photos.py "C:/Users/you/Downloads/MadhaPhotos" "C:/Users/you/Downloads/more-photos"
 """
 import sys
 from pathlib import Path
@@ -43,6 +46,15 @@ JOBS = [
     ("WhatsApp Image 2026-09-14 at 20.52.45 (1).jpeg", (152, 180, 928, 563), "biotech-mushrooms.jpg"),
     ("Field Visit 1.jpeg", (842, 22, 1558, 558), "biotech-silkworms.jpg"),
     ("WhatsApp Image 2026-09-14 at 20.52.54.jpeg", (0, 950, 4032, 2630), "students-faculty.jpg"),
+    # Campus Life gallery, second batch: single photos rather than collages
+    ("GraduationDay.jpeg", None, "event-graduation-day.jpg"),
+    ("Library1.jpeg", None, "campus-library.jpg"),
+    ("WhatsApp Image 2026-09-18 at 11.09.45.jpeg", None, "event-madha-group-function.jpg"),
+    ("beachcleaning1.jpeg", None, "outreach-coastal-cleanup-day.jpg"),
+    ("beachcleaning2.jpeg", None, "outreach-manjappai-bags.jpg"),
+    ("schooloutreach6.jpeg", None, "outreach-school-talk.jpg"),
+    ("sportsday3.jpeg", None, "sports-team-men.jpg"),
+    ("sportsday4.jpeg", None, "sports-team-women.jpg"),
 ]
 
 def trim_gutters(im, limit=24):
@@ -59,9 +71,15 @@ def trim_gutters(im, limit=24):
     while a.shape[1] - r < limit and flat(a[:, r - 1]): r -= 1
     return im.crop((l, t, r, b))
 
-def main(src_dir):
+def find(src_dirs, name):
+    for d in src_dirs:
+        if (d / name).exists():
+            return d / name
+    raise SystemExit(f"{name} is not in any of: {', '.join(str(d) for d in src_dirs)}")
+
+def main(src_dirs):
     for src, box, dst in JOBS:
-        im = Image.open(src_dir / src).convert("RGB")
+        im = Image.open(find(src_dirs, src)).convert("RGB")
         if box:
             im = trim_gutters(im.crop(box))
         if im.width > MAX_W:
@@ -71,6 +89,6 @@ def main(src_dir):
         print(f"{dst:34s} {im.width}x{im.height}  {(OUT / dst).stat().st_size // 1024} KB")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         sys.exit(__doc__)
-    main(Path(sys.argv[1]))
+    main([Path(a) for a in sys.argv[1:]])
