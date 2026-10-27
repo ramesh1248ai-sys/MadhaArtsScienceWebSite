@@ -384,7 +384,8 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .programme .programme__school { font-size: 0.85rem; font-weight: 500; color: var(--gold-700); margin-bottom: 0.9rem; }
 .programme__foot { margin-top: auto; padding-top: 1.1rem; border-top: 1px dashed var(--line); display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: 0.88rem; color: var(--muted); }
 .programme__foot span { display: inline-flex; align-items: center; gap: 0.4rem; }
-.programme__foot a { display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600; color: var(--navy-800); text-decoration: none; }
+/* The padding enlarges the tap target; the negative margin keeps the footer the same height */
+.programme__foot a { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.6rem 0; margin: -0.6rem 0; font-weight: 600; color: var(--navy-800); text-decoration: none; }
 .programme__foot a:hover { color: var(--gold-700); }
 .programme__foot .i { width: 1em; height: 1em; }
 
@@ -561,6 +562,7 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .contact-card h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
 .contact-card p, .contact-card a { margin: 0; font-size: 1.02rem; color: var(--navy-900); text-decoration: none; font-weight: 500; }
 .contact-card a:hover { color: var(--gold-700); text-decoration: underline; }
+.contact-card a { display: inline-block; padding: 0.4rem 0; margin: -0.4rem 0; }
 .map { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: var(--paper-2); aspect-ratio: 16 / 10; }
 .map iframe { width: 100%; height: 100%; border: 0; display: block; }
 
