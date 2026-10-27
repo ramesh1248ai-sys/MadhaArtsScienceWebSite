@@ -16,15 +16,15 @@ python -m http.server 8000
 
 | File | Contents | Replaces (old site) |
 |---|---|---|
-| `index.html` | Hero, key facts, about, programme finder, principal's message, admissions + enquiry form, campus life, recent events, Madha Group | Home |
+| `index.html` | Hero, key facts, about, programme finder, principal's message, admissions, campus life, recent events, Madha Group | Home |
 | `about.html` | The college, mission statement & values, Madha Group + sister institutions, management team, principal's full message | About Us menu (5 pages) |
 | `academics.html` | All 9 programmes with filters, career training & field visits, UG/PG admission criteria, how to apply | Admissions, Courses |
 | `campus-life.html` | Recent events, photo gallery with lightbox, social outreach | Gallery (was empty) |
-| `contact.html` | Address, phone, emails, map, enquiry form | Contact Us |
+| `contact.html` | Address, phone, emails, map | Contact Us |
 
 ```
 assets/css/styles.css      design system + all components
-assets/js/main.js          mobile menu, programme filter, lightbox, enquiry form, scroll reveal
+assets/js/main.js          mobile menu, programme filter, lightbox, scroll reveal
 assets/img/                enhanced photos used by the site
 tools/enhance_images.py    the image enhancement pipeline
 tools/prepare_photos.py    crops the college's 2025–26 event photos out of their collages
@@ -120,10 +120,9 @@ Things **written new** that the college should confirm:
 - **Spelling.** "Anakaputhur" is used consistently; the old site mixed "Anagaputhur" and "Anankaputhur".
 
 Broken links on the old site: the B.Sc Mathematics and B.Sc Hotel & Catering Management course pages return 404.
-In the redesign those two cards link to the enquiry form instead of a department page.
+In the redesign those two cards link to the contact details on the Contact page instead of a department page.
 
 ## Before going live
 
-- **Enquiry form:** a static site has no backend, so the form currently opens the visitor's email app with the enquiry pre-filled to info@madhaarts.in. Connect it to a form handler (the existing WordPress contact form, Formspree, Google Forms, etc.) for direct submissions.
 - **Social links:** add the college's own social media links once confirmed.
 - **Photos:** newer, higher-resolution originals from the college would enhance even better. Drop them in `assets/img/originals/` and re-run the script.

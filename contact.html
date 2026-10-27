@@ -82,7 +82,7 @@
         <div data-reveal>
           <p class="eyebrow">Get in touch</p>
           <h2 id="contact-title">We&rsquo;d love to hear from you</h2>
-          <div class="contact-cards">
+          <div class="contact-cards anchor" id="enquiry">
             <div class="contact-card">
               <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               <div><h3>Address</h3><p>Erandamkattalai, Sadhanandhapuram, Thandalam Post<br>(near Anakaputhur Bus Stop), Chennai &ndash; 600 112</p></div>
@@ -100,46 +100,14 @@
               <div><h3>Career guidance &amp; counselling</h3><a href="mailto:madhaasc@gmail.com">madhaasc@gmail.com</a></div>
             </div>
           </div>
+        </div>
+
+        <div data-reveal style="--d:.1s">
           <div class="map">
             <iframe title="Map showing Madha Arts and Science College, Thandalam, Chennai" src="https://www.google.com/maps?q=Madha%20Arts%20and%20Science%20College%2C%20Thandalam%2C%20Chennai%20600112&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <p style="margin-top:1rem"><a class="link-arrow" href="https://www.google.com/maps/dir/?api=1&amp;destination=Madha%20Arts%20and%20Science%20College%2C%20Thandalam%2C%20Chennai%20600112" target="_blank" rel="noopener">Get directions in Google Maps <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></p>
         </div>
-
-        <form class="form-card anchor" id="enquiry" data-enquiry data-reveal style="--d:.1s" novalidate>
-          <h3>Admission enquiry</h3>
-          <p>Share your details and our admissions team will get back to you.</p>
-          <div class="form-grid">
-            <div class="field"><label for="c-name">Full name <span>*</span></label><input id="c-name" name="name" autocomplete="name" required></div>
-            <div class="field"><label for="c-phone">Mobile number <span>*</span></label><input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-]{10,15}" required></div>
-            <div class="field field--full"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email"></div>
-            <div class="field field--full">
-              <label for="c-programme">Programme of interest <span>*</span></label>
-              <select id="c-programme" name="programme" required>
-                <option value="">Select a programme</option>
-                <optgroup label="Undergraduate">
-                  <option>B.Com (General)</option>
-                  <option>B.B.A</option>
-                  <option>B.C.A</option>
-                  <option>B.Sc Computer Science</option>
-                  <option>B.Sc Biotechnology</option>
-                  <option>B.Sc Mathematics</option>
-                  <option>B.A English</option>
-                  <option>B.Sc Hotel &amp; Catering Management</option>
-                </optgroup>
-                <optgroup label="Postgraduate">
-                  <option>M.Com</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="field field--full"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="4"></textarea></div>
-          </div>
-          <div class="form-foot">
-            <small>We use your details only to respond to your enquiry.</small>
-            <button class="btn btn--gold" type="submit">Send enquiry <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
-          </div>
-          <p class="form-status" role="status" hidden></p>
-        </form>
       </div>
     </section>
   </main>

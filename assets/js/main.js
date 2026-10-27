@@ -113,29 +113,5 @@
     lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
   }
 
-  // Admission enquiry: no backend on a static site, so compose an email to the admissions office.
-  document.querySelectorAll("[data-enquiry]").forEach((form) =>
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      const data = new FormData(form);
-      const subject = `Admission enquiry: ${data.get("programme")}`;
-      const body = [
-        `Name: ${data.get("name")}`,
-        `Phone: ${data.get("phone")}`,
-        `Email: ${data.get("email") || "-"}`,
-        `Programme: ${data.get("programme")}`,
-        "",
-        data.get("message") || "",
-      ].join("\n");
-      window.location.href = `mailto:info@madhaarts.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      const status = form.querySelector(".form-status");
-      if (status) {
-        status.hidden = false;
-        status.textContent = "Thank you. Your email app should open with the enquiry ready to send. You can also call +91 81818 15379.";
-      }
-    })
-  );
-
   document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 })();
