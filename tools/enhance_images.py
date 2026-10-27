@@ -172,7 +172,8 @@ def emblem():
     up = upscale(rgb, PLUS)
     a_up = cv2.resize(alpha, (up.shape[1], up.shape[0]), interpolation=cv2.INTER_CUBIC)
     rgba = np.dstack([up, a_up])
-    small = Image.fromarray(rgba, "RGBA").resize((256, round(256 * up.shape[0] / up.shape[1])), Image.LANCZOS)
+    # 512px wide so the 340px call-to-action watermark is never enlarged, even on 1.5x screens
+    small = Image.fromarray(rgba, "RGBA").resize((512, round(512 * up.shape[0] / up.shape[1])), Image.LANCZOS)
     small.quantize(colors=128, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.NONE).save(OUT / "emblem.png", optimize=True)
     Image.fromarray(rgba, "RGBA").resize((64, 56), Image.LANCZOS).save(OUT / "favicon.png", optimize=True)
 
