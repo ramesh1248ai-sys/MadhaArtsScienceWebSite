@@ -453,6 +453,8 @@ svg.i { width: 1.1em; height: 1.1em; flex: none; stroke: currentColor; fill: non
 .field { display: flex; flex-direction: column; gap: 0.4rem; }
 .field--full { grid-column: 1 / -1; }
 @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+/* <picture> only swaps in the phone copy; it must not get in the way of the image filling its box */
+.tile picture, .event__media picture { display: contents; }
 .field label { font-size: 0.86rem; font-weight: 600; color: var(--navy-900); }
 .field label span { color: #b3262e; }
 .field input, .field select, .field textarea {

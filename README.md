@@ -28,6 +28,7 @@ assets/js/main.js          mobile menu, programme filter, lightbox, enquiry form
 assets/img/                enhanced photos used by the site
 tools/enhance_images.py    the image enhancement pipeline
 tools/prepare_photos.py    crops the college's 2025–26 event photos out of their collages
+tools/make_phone_copies.py makes the smaller gallery photo copies in assets/img/phone/ for phones
 ```
 
 Design: deep navy + warm gold drawn from the college emblem, Newsreader (headings) and Inter (body) from Google Fonts,
@@ -69,6 +70,13 @@ The image beside "Two decades of wholesome education" on the About page is `camp
 
 Both of these headers carry `page-hero--flat`, which drops the blurred patch that normally sits behind the header text.
 Without it the photo is unclouded, and the scrim alone keeps the text legible: measured over the glyph pixels, the worst case is 5.0:1 on Academics and 5.4:1 on About.
+
+### Phone copies of the gallery photos
+
+On screens up to 520px wide, the Campus Life gallery, the Recent events cards and the home page tiles load smaller copies from `assets/img/phone/`, through `<picture><source media="(max-width: 520px)">`.
+`tools/make_phone_copies.py` sizes each copy for a 2x phone screen, allowing for the crop on wide photos, and skips photos that would shrink by less than 10%.
+Scrolling the whole Campus Life page on a phone now downloads about 1.7 MB less.
+Run `python tools/make_phone_copies.py` again after adding or replacing a gallery photo, and wrap a new photo's `<img>` the same way.
 
 ### Event photos (2025–26)
 
